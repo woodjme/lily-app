@@ -1,0 +1,37 @@
+version: '3'
+services:
+  lily-frontend:
+    container_name: lily-frontend
+    build: ./lily-frontend
+    ports:
+      - "8080:80"
+    networks:
+      - lily-network
+
+  lily-backend:
+    container_name: lily-backend
+    build: ./lily-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DBHOST: lily-database
+      DBUSER: lilyUser
+      DBPASS: lilyPass
+      DBNAME: lilyDb
+    networks:
+      - lily-network
+
+  lily-database:
+    container_name: lily-database
+    image: "mysql:5.6"
+    environment:
+      MYSQL_USER: lilyUser
+      MYSQL_PASSWORD: lilyPass
+      MYSQL_DATABASE: lilyDb
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    networks:
+      - lily-network
+
+networks:
+    lily-network:
+        driver: bridge
