@@ -4,7 +4,7 @@ import './App.css';
 import Async from 'react-async';
 
 const getTime = () =>
-  fetch("http://localhost:3000/")
+  fetch("http://localhost:3000/time")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
 

@@ -11,7 +11,7 @@ const db = mysql.createConnection({
 	database: process.env.DBNAME
 })
 
-app.get('/', (req, res) => {
+app.get('/time', (req, res) => {
 
 	db.query('SELECT CURTIME() AS TIME', function (error, results, fields) {
 		if (error) console.error(error)
